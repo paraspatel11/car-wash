@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+    crossorigin="anonymous">
+</head>
+<body>
+
+    <p id="sections">Part 1: CRUD using MySQL DB</p>
+    <div th:if="${msg}">
+        <p class="error" th:text="${msg}"></p>
+    </div>
+
+	<!--  Form Section   -->
+    <h1>Sale Form (Add/Edit)</h1>
+    <form action="#" th:action="@{/save}" th:object="${sale}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <label>Date: <input type="date" th:field="*{date}" /></label><br/>
+        <label>Sales Amount: <input type="text" th:field="*{salesAmt}" /></label><br/>
+        <label>Washes: <input type="text" th:field="*{washes}" /></label><br/>
+        <label>Name: <input type="text" th:field="*{enteredBy}" /></label><br/>
+        <button type="submit">Save</button>
+        <button type="cancel">Cancel</button>  
+    </form>
+    
+    <hr>
+    
+    <!--  List All Data Section -->
+    <h2>All Sales</h2>
+    <div class="card-body">
+        <table class="table table-sm table-striped">
+        <thead>
+            <tr th:style="'background-color: #000000; color: #ffffff;'">
+                <th>ID</th>
+                <th>Date</th>
+                <th>Sales Amount</th>
+                <th>Washes</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="sale : ${sales}">
+                <td th:text="${sale.id}"></td>
+                <td th:text="${sale.date}"></td>
+                <td th:text="${sale.salesAmt}"></td>
+                <td th:text="${sale.washes}"></td>
+                <td th:text="${sale.enteredBy}"></td>
+                <td>
+                    <a th:href="@{/edit/{id}(id=${sale.id})}">Edit | </a>
+                    <a th:href="@{/delete/{id}(id=${sale.id})}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+    
+
+<!-- Part 2 - Consume Weather API in the application and show data below -->
+<hr>
+<hr>
+
+<p id="sections">Part 2: Consume any API and display data</p>
+<div class="card-body">
+    <table class="table table-sm table-striped">
+        <tbody>
+            <tr th:style="'background-color: #000000; color: #ffffff;'">
+                <td>Country</td>
+                <td>Country (ISO code)</td>
+                <td>Time zone (Hours)</td>
+                <td>Temperature (&#176;C)</td>
+                <td>Feels like (&#176;C)</td>
+                <td>Minimum temperature (&#176;C)</td>
+                <td>Maximum temperature (&#176;C)</td>
+                <td>Weather</td>
+                <td>Weather description</td>
+                <td>Pressure</td>
+                <td>Humidity</td>
+            </tr>
+            <tr>
+                <td th:text="${weather.country}"></td>
+                <td th:text="${weather.countryISOCode}"></td>
+                <td th:text="${weather.timeZone}"></td>
+                <td th:text="${weather.temperature}"></td>
+                <td th:text="${weather.tempFeelsLike}"></td>
+                <td th:text="${weather.tempMin}"></td>
+                <td th:text="${weather.tempMax}"></td>
+                <td th:text="${weather.weather}"></td>
+                <td th:text="${weather.weatherDesc}"></td>
+                <td th:text="${weather.pressure}"></td>
+                <td th:text="${weather.humidity}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
