@@ -21,9 +21,10 @@ This project is a Car Wash Management System developed using Spring Boot. It pro
 
 1. Clone the repository to your local machine.
 2. Open the project in your preferred IDE (e.g., IntelliJ IDEA, Eclipse).
-3. Configure your database connection in `application.properties`.
-4. Build and run the application.
-5. Access the application at `http://localhost:8080`.
+3. Make sure you have Java 17 or above
+4. Configure your database connection in `application.properties`.
+5. Build and run the application.
+6. Access the application at `http://localhost:8080`.
 
 ## Usage
 
